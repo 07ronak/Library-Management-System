@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth");
 const bookRoutes = require("./routes/book");
+const userRoutes = require("./routes/user");
 const ExpressError = require("./utils/ExpressError");
 /* const session = require("express-session"); */
 
@@ -40,6 +41,7 @@ app.get("/", (req, res) => res.send("Library Management System is running!"));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
+app.use("/api/users", userRoutes);
 /* app.use("/api/books/:id/review", reviewRoutes); */
 
 //For all other routes request [NO SUCH PAGE EXISTS]
