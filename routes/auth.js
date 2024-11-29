@@ -2,6 +2,7 @@ const express = require("express");
 const rateLimit = require("express-rate-limit");
 const { register, login, logout } = require("../controllers/authController");
 const wrapAsync = require("../utils/wrapAsync");
+const { validateAndSanitizeInput } = require("../middleware/security");
 const router = express.Router();
 
 // Create a rate limiter specifically for login attempts
@@ -19,7 +20,12 @@ const loginLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-router.post("/register", wrapAsync(register));
+router.post(
+  "/register",
+  validateAndSanitizeInput.register,
+  validateAndSanitizeInput.checkValidation,
+  wrapAsync(register)
+);
 router.post("/login", loginLimiter, wrapAsync(login));
 router.post("/logout", wrapAsync(logout));
 

@@ -5,13 +5,17 @@ const authRoutes = require("./routes/auth");
 const bookRoutes = require("./routes/book");
 const userRoutes = require("./routes/user");
 const ExpressError = require("./utils/ExpressError");
-/* const session = require("express-session"); */
+const { applySecurityMiddleware } = require("./middleware/security");
 
 if (process.env.NODE_ENV != "production") {
   dotenv.config();
 }
 
 const app = express();
+
+// Apply security middleware
+applySecurityMiddleware(app);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
