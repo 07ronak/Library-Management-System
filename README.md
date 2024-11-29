@@ -219,7 +219,7 @@ library-management-system/
 - Add review system for each book.
 - Audio logs for activity tracking
 - Allow users to borrow books with a time limit.
-- Track borrow date, return due date & fine for alte return.
+- Track borrow date, return due date & fine for late return.
 - Add Genres and Tags to books
 - Email for successful registration & reminds for due return.
 - Admin can generate reports
